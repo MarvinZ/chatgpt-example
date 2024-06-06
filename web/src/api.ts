@@ -2,7 +2,7 @@ import { Conversation, Message } from "./conversation/types";
 import { Persona } from "./persona/types";
 
 export const getPersonas: () => Promise<Persona[]> = () => {
-	return fetch("http://localhost:3010/persona", {
+	return fetch("http://localhost:3000/persona", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -16,7 +16,7 @@ export const getPersonas: () => Promise<Persona[]> = () => {
 };
 
 export const getConversationList: () => Promise<Conversation[]> = () => {
-	return fetch(`http://localhost:3010/conversation`, {
+	return fetch(`http://localhost:3000/conversation`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const getConversationList: () => Promise<Conversation[]> = () => {
 };
 
 export const getMessages: (id: string) => Promise<Message[]> = (id) => {
-	return fetch(`http://localhost:3010/conversation/${id}`, {
+	return fetch(`http://localhost:3000/conversation/${id}`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const startConversation: (
 	persona: string,
 	message: string
 ) => Promise<Message[]> = (id, persona, message) => {
-	return fetch(`http://localhost:3010/conversation/${id}`, {
+	return fetch(`http://localhost:3000/conversation/${id}`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -65,7 +65,7 @@ export const sendMessage: (
 	id: string,
 	message: string
 ) => Promise<Message[]> = (id, message) => {
-	return fetch(`http://localhost:3010/conversation/${id}`, {
+	return fetch(`http://localhost:3000/conversation/${id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
