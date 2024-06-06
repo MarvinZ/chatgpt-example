@@ -4,7 +4,7 @@ import { Message } from "../types";
 import fetch from "node-fetch";
 
 const openai = new OpenAI({
-	apiKey: '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' // process.env.OPENAI_API_KEY,
+	apiKey: '' // process.env.OPENAI_API_KEY,
 });
 
 type StorageMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam & {
