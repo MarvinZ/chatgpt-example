@@ -4,7 +4,7 @@ import { Message } from "../types";
 import fetch from "node-fetch";
 
 const openai = new OpenAI({
-	apiKey: '' // process.env.OPENAI_API_KEY,
+	apiKey: "" // process.env.OPENAI_API_KEY,
 });
 
 type StorageMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam & {
@@ -95,9 +95,15 @@ export class ChatGptConversationService {
 	};
 
 	private handleApiResponse = (responseContent: string) => {
-		const workOrderJson = this.createWorkOrderJson(responseContent);
-		this.postWorkOrder(workOrderJson);
+		// Check if the responseContent contains "NEWWO"
+		if (responseContent.includes("NEWWO")) {
+			const workOrderJson = this.createWorkOrderJson(responseContent);
+			this.postWorkOrder(workOrderJson);
+		} else {
+			console.log("API response does not contain NEWWO, skipping work order creation.");
+		}
 	}
+	
 
 	private createWorkOrderJson = (responseJson: any) => {
 		// Extract values from the response JSON
@@ -112,7 +118,7 @@ export class ChatGptConversationService {
 			"ReturnResult": "true",
 			"Payload": {
 				"WorkOrderType": "Work Order",
-				"ClientWorkOrderNumber": "MFWO10004",  // Static value for now
+				"ClientWorkOrderNumber": "MFAI10010",  // Static value for now
 				"SupplierPurchaseOrderNumber": "",  // Empty value for now
 				"ClientId": "DGC-HQ",
 				"ProviderId": "YOU72644AR",

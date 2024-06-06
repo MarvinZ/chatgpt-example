@@ -37,7 +37,7 @@ export const ConversationList = ({
 	}, [conversations, onLoadConversation, personas]);
 	return (
 		<div className="conversation-list">
-			<h3>Conversation History</h3>
+			<h3>Request History</h3>
 			{conversationList}
 		</div>
 	);
